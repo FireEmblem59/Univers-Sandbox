@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap");
+
+body {
+  margin: 0;
+  background: #000;
+  color: #aed9e0;
+  font-family: "Rajdhani", sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  user-select: none;
+}
+
+canvas {
+  display: block;
+}
+
+/* --- OVERLAY MENU --- */
+.overlay-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.overlay-menu.hidden {
+  display: none;
+}
+.overlay-menu h1 {
+  font-size: 60px;
+  color: #fff;
+  letter-spacing: 5px;
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px #0077ff;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.preset-btn {
+  font-size: 20px;
+  padding: 20px 40px;
+  border: 1px solid #0077ff;
+  background: rgba(0, 119, 255, 0.1);
+  color: white;
+  transition: 0.3s;
+}
+.preset-btn:hover {
+  background: #0077ff;
+  box-shadow: 0 0 30px #0077ff;
+  transform: scale(1.05);
+}
+
+/* --- SIDEBARS --- */
+.sidebar {
+  position: absolute;
+  top: 20px;
+  bottom: 100px;
+  width: 220px;
+  background: rgba(10, 15, 20, 0.85);
+  border: 1px solid rgba(0, 119, 255, 0.3);
+  backdrop-filter: blur(5px);
+  padding: 15px;
+  overflow-y: auto;
+  transition: transform 0.3s;
+}
+.sidebar.left {
+  left: 20px;
+  border-radius: 0 20px 0 20px;
+  transform: translateX(-250px);
+}
+.sidebar.left.open {
+  transform: translateX(0);
+}
+.sidebar.right {
+  right: 20px;
+  border-radius: 20px 0 20px 0;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  color: #fff;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+}
+
+/* Object List */
+#objectList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#objectList li {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #222;
+  font-size: 14px;
+}
+#objectList li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+#objectList li.selected {
+  background: rgba(0, 119, 255, 0.3);
+  border-left: 3px solid #0077ff;
+}
+
+/* Inspector Properties */
+.prop-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.action-row {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+.small-btn {
+  flex: 1;
+  padding: 5px;
+  font-size: 12px;
+}
+.danger {
+  border-color: #ff4444;
+  color: #ffaaaa;
+}
+.danger:hover {
+  background: #550000;
+}
+
+/* --- UI BAR (Bottom) --- */
+.ui {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 15, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+.toolbar {
+  display: flex;
+  gap: 5px;
+}
+.separator {
+  width: 1px;
+  background: #444;
+  margin: 0 5px;
+}
+
+button {
+  background: #222;
+  color: #ccc;
+  border: 1px solid #444;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: "Rajdhani";
+  font-weight: 700;
+}
+button:hover {
+  background: #333;
+  color: white;
+  border-color: #666;
+}
+button.active-tool {
+  background: #0077ff;
+  border-color: #0055ff;
+  color: white;
+  box-shadow: 0 0 10px #0077ff;
+}
+button.active {
+  background: #2a9d8f;
+  color: white;
+}
+
+.mode-group {
+  position: relative;
+}
+.options {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  border: 1px solid #333;
+  display: none;
+  flex-direction: column;
+  min-width: 100px;
+}
+.mode-group:hover .options {
+  display: flex;
+}
+.options button {
+  border: none;
+  border-bottom: 1px solid #222;
+  text-align: left;
+}
+.options button:hover {
+  background: #0077ff;
+}
+
+.slider-markers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #666;
+  margin-top: -5px;
+  padding: 0 2px;
+}
+
+#timeSlider::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    90deg,
+    #444 0%,
+    #444 10%,
+    #0077ff 10%,
+    #0077ff 100%
+  );
+}
